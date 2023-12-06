@@ -45,11 +45,6 @@ param frontendPorts array = [
 @description('Application Gateway Gateway IP Configurations')
 param gatewayIPConfigurations array = [
   {
-    name: 'appgw-gateway-ip'
-    subnetName: 'appgw'
-    // privateIPAddress: ''
-  }
-  {
     name: 'apw-ip-configuration'
     properties: {
       subnet: {
