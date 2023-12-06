@@ -4,14 +4,16 @@ param appgwName string = 'appgw'
 
 @description('Application Gateway Backend Address Pools')
 param backendAddressPools array = [
-  {
-    name: 'appgw-backend-pool'
-    backendAddresses: [
-      {
-        fqdn: 'conappdemo.kinddune-8f348420.westeurope.azurecontainerapps.io'
-        // ipAddress: ''
+  
+    {
+      name: 'appServiceBackendPool'
+      properties: {
+        backendAddresses: [
+          {
+            fqdn:'conappdemo.kinddune-8f348420.westeurope.azurecontainerapps.io'
+          }
+        ]
       }
-      ]
     }]
  
 @description('Application Gateway Backend Http Settings Collection')
