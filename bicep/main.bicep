@@ -32,8 +32,16 @@ param backendHttpSettingsCollection array = [
 @description('Application Gateway Frontend IP Configurations')
 param frontendIPConfigurations array = [
   {
-    name: 'appgw-frontend-ip'
-    privateIPAddress: ''
+    name: 'public'
+    properties: {
+      privateIPAllocationMethod: 'Dynamic'
+      // privateLinkConfiguration: {
+      //   id: '<id>'
+      // }
+      publicIPAddress: {
+        id: '/subscriptions/628a5315-ad55-4071-8e32-cdaa725ce8ac/resourceGroups/appgwdemo/providers/Microsoft.Network/publicIPAddresses/pip-appgwdemo'
+      }
+    }
   }]
 
 @description('Application Gateway Frontend Ports')
@@ -61,13 +69,21 @@ param gatewayIPConfigurations array = [
 @description('Application Gateway Http Listeners')
 param httpListeners array = [
   {
-    name: 'appgw-http-listener'
-    frontendIPConfigurationName: 'appgw-frontend-ip'
-    frontendPortName: 'appgw-frontend-port'
-    protocol: 'Http'
-    requireServerNameIndication: false
-    sslCertificateName: ''
-  }]
+    name: 'httpRedirect80'
+    properties: {
+      frontendIPConfiguration: {
+        id: 'public'
+      }
+      frontendPort: {
+        id: 'port80'
+      }
+      hostNames: []
+      protocol: 'Http'
+      requireServerNameIndication: false
+    }
+  }
+
+]
 
 @description(' Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints array = [
