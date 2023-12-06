@@ -146,7 +146,7 @@ param urlPathMaps array = [
 
 module appgw './modules/network/application-gateway/main.bicep' = {
   name: 'appgw-deployment'
-  scope: resourceGroup('rg-appgw')
+  scope: resourceGroup('appgwdemo')
   params: {
     name: appgwName
     backendAddressPools: backendAddressPools 
