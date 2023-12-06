@@ -64,21 +64,19 @@ param httpListeners array = [
 
 @description(' Configuration details for private endpoints. For security reasons, it is recommended to use private endpoints whenever possible.')
 param privateEndpoints array = [
+  
   {
-    name: 'appgw-private-endpoint'
-    privateIPAllocationMethod: 'Dynamic'
-    privateIPAddress: ''
-    subnetName: 'appgw-subnet'
-    privateLinkServiceConnections: [
-      {
-        name: 'appgw-private-link-service-connection'
-        privateLinkServiceId: ''
-        groupIds: [
-          'ApplicationGateway'
-        ]
-      }
+    privateDnsZoneResourceIds: [
+      '<privateDNSZoneResourceId>'
     ]
-  }]
+    service: 'public'
+    subnetResourceId: '<subnetResourceId>'
+    tags: {
+      Environment: 'Non-Prod'
+      Role: 'DeploymentValidation'
+    }
+  }
+]
 
 @description('Application Gateway Probes')
 param probes array = [
@@ -155,7 +153,7 @@ module appgw './modules/network/application-gateway/main.bicep' = {
     frontendPorts: frontendPorts
     gatewayIPConfigurations: gatewayIPConfigurations
     httpListeners: httpListeners
-    privateEndpoints: privateEndpoints
+    // privateEndpoints: privateEndpoints
     probes: probes
     requestRoutingRules: requestRoutingRules
     sku: appgwSku
