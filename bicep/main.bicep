@@ -144,7 +144,7 @@ param urlPathMaps array = [
 
 
 
-module appgw './modules/application-gateway/main.bicep' = {
+module appgw './modules/network/application-gateway/main.bicep' = {
   name: 'appgw-deployment'
   scope: resourceGroup('rg-appgw')
   params: {
