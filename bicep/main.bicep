@@ -38,8 +38,10 @@ param frontendIPConfigurations array = [
 @description('Application Gateway Frontend Ports')
 param frontendPorts array = [
   {
-    name: 'appgw-frontend-port'
-    port: 80
+    name: 'port80'
+    properties: {
+      port: 80
+    }
   }]
 
 @description('Application Gateway Gateway IP Configurations')
