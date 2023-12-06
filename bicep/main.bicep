@@ -17,15 +17,16 @@ param backendAddressPools array = [
 @description('Application Gateway Backend Http Settings Collection')
 param backendHttpSettingsCollection array = [
   {
-    name: 'appgw-backend-http-settings'
-    port: 443
-    protocol: 'Https'
-    cookieBasedAffinity: 'Disabled'
-    pickHostNameFromBackendAddress: true
-    probeEnabled: true
-    requestTimeout: 30
-    probeName: 'appgw-backend-probe'
+    name: 'appServiceBackendHttpsSetting'
+    properties: {
+      cookieBasedAffinity: 'Disabled'
+      pickHostNameFromBackendAddress: true
+      port: 443
+      protocol: 'Https'
+      requestTimeout: 30
     }
+  }
+
   ]
 
 @description('Application Gateway Frontend IP Configurations')
