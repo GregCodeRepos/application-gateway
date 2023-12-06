@@ -48,7 +48,16 @@ param gatewayIPConfigurations array = [
     name: 'appgw-gateway-ip'
     subnetName: 'appgw'
     // privateIPAddress: ''
-  }]
+  }
+  {
+    name: 'apw-ip-configuration'
+    properties: {
+      subnet: {
+        id: '/subscriptions/628a5315-ad55-4071-8e32-cdaa725ce8ac/resourceGroups/vnet-spoke/providers/Microsoft.Network/virtualNetworks/vnet-spoke-02-ne/subnets'
+      }
+    }
+  }
+]
 
 
 @description('Application Gateway Http Listeners')
